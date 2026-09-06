@@ -1,0 +1,53 @@
+{
+  "schema": "totem.theme/v0",
+  "id": "retro-terminal",
+  "name": "Retro Terminal",
+  "version": "0.1.0",
+  "presentation": {
+    "tokens": {
+      "color.background": "#030b05",
+      "color.surface": "#07170b",
+      "color.text": "#9cff9c",
+      "color.accent": "#45ff6a",
+      "font.family": "monospace",
+      "radius.panel": 2,
+      "motion.enabled": true
+    },
+    "scenes": {
+      "ambient": {
+        "layout": "ambient-terminal",
+        "safeAreaMode": "strict",
+        "transition": { "enter": "scanline", "durationMs": 140 }
+      },
+      "task-active": {
+        "layout": "task-terminal",
+        "safeAreaMode": "strict",
+        "transition": { "enter": "type-on", "durationMs": 90 }
+      }
+    },
+    "ambient": {
+      "scene": "ambient",
+      "idleAfterMs": 20000,
+      "screensaverAfterMs": 120000
+    },
+    "led": {
+      "idle": { "semantic": "idle", "effect": "breathe", "intensity": 0.25 },
+      "thinking": { "semantic": "thinking", "effect": "pulse", "intensity": 0.55 },
+      "error": { "semantic": "error", "effect": "pulse", "intensity": 0.85 }
+    }
+  },
+  "persona": {
+    "name": "Totem Terminal",
+    "instructions": [
+      "Keep responses concise.",
+      "Use a terminal-inspired tone without pretending to be a different system."
+    ]
+  },
+  "voice": {
+    "provider": "local",
+    "model": "default",
+    "voice": "neutral",
+    "rate": 0.95,
+    "pitch": 0.9
+  }
+}

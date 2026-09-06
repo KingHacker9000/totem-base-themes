@@ -2,6 +2,61 @@
   "schema": "totem.theme/v0",
   "id": "default",
   "name": "Totem Default",
-  "version": "0.1.0",
-  "enabledByDefault": true
+  "version": "0.2.0",
+  "enabledByDefault": true,
+  "presentation": {
+    "tokens": {
+      "color.background": "#101216",
+      "color.surface": "#191d24",
+      "color.text": "#f4f7fb",
+      "color.accent": "#7bdff2",
+      "radius.panel": 20,
+      "motion.enabled": true
+    },
+    "scenes": {
+      "ambient": {
+        "layout": "ambient-default",
+        "safeAreaMode": "strict",
+        "transition": {
+          "enter": "fade",
+          "exit": "fade",
+          "durationMs": 180
+        }
+      },
+      "task-active": {
+        "layout": "task-default",
+        "safeAreaMode": "strict",
+        "transition": {
+          "enter": "fade",
+          "durationMs": 120
+        }
+      }
+    },
+    "ambient": {
+      "scene": "ambient",
+      "idleAfterMs": 30000,
+      "screensaverAfterMs": 180000
+    },
+    "led": {
+      "idle": { "semantic": "idle", "effect": "breathe", "intensity": 0.3 },
+      "listening": { "semantic": "listening", "effect": "pulse", "intensity": 0.7 },
+      "thinking": { "semantic": "thinking", "effect": "pulse", "intensity": 0.6 },
+      "success": { "semantic": "success", "effect": "solid", "intensity": 0.7 },
+      "error": { "semantic": "error", "effect": "pulse", "intensity": 0.9 }
+    }
+  },
+  "persona": {
+    "name": "Totem",
+    "instructions": [
+      "Be concise, calm, and practical.",
+      "Prefer clear status over theatrical personality."
+    ]
+  },
+  "voice": {
+    "provider": "local",
+    "model": "default",
+    "voice": "neutral",
+    "rate": 1,
+    "pitch": 1
+  }
 }
