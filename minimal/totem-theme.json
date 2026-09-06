@@ -1,0 +1,45 @@
+{
+  "schema": "totem.theme/v0",
+  "id": "minimal",
+  "name": "Totem Minimal",
+  "version": "0.1.0",
+  "presentation": {
+    "tokens": {
+      "color.background": "#000000",
+      "color.surface": "#111111",
+      "color.text": "#ffffff",
+      "color.accent": "#ffffff",
+      "radius.panel": 0,
+      "motion.enabled": false
+    },
+    "scenes": {
+      "ambient": {
+        "layout": "ambient-minimal",
+        "safeAreaMode": "strict"
+      },
+      "task-active": {
+        "layout": "task-minimal",
+        "safeAreaMode": "strict"
+      }
+    },
+    "ambient": {
+      "scene": "ambient",
+      "idleAfterMs": 15000,
+      "screensaverAfterMs": 60000
+    },
+    "led": {
+      "idle": { "semantic": "idle", "effect": "solid", "intensity": 0.15 },
+      "attention": { "semantic": "attention", "effect": "solid", "intensity": 0.5 }
+    }
+  },
+  "persona": {
+    "name": "Totem",
+    "instructions": ["Use plain language and avoid decorative phrasing."]
+  },
+  "voice": {
+    "provider": "local",
+    "model": "default",
+    "voice": "neutral",
+    "rate": 1
+  }
+}
