@@ -1,0 +1,7 @@
+{
+  "schema": "totem.theme/v0",
+  "id": "default",
+  "name": "Totem Default",
+  "version": "0.1.0",
+  "enabledByDefault": true
+}
