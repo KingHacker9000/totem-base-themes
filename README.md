@@ -28,4 +28,8 @@ Themes do not receive service, filesystem, shell, MCP, or root permissions just 
 
 Private/local character themes are valid Totem use cases but do not belong in this public repository.
 
-Implementation begins after the theme SDK has a working v0 contract.
+## Deterministic public bundles
+
+Run `node scripts/build-theme-bundles.mjs --out dist` to produce the canonical distributable representation for the three public themes. Each `*.theme-bundle.json` contains only ordinary files beneath that theme directory, sorted by portable relative path, with exact byte size, SHA-256, and base64 content. `index.json` binds each bundle SHA-256 to its manifest and inventory identities.
+
+The builder fails closed on symlinks, special filesystem entries, case/Unicode-ambiguous paths, repository-only directories such as `.github`, `scripts`, `test`, or `node_modules`, and any path escaping the theme root. Repository CI builds the bundles twice and requires byte-for-byte identical output, in addition to Theme SDK contract and asset-boundary validation.
