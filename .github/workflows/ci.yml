@@ -1,0 +1,38 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  theme-contract:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout base themes
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          persist-credentials: false
+      - name: Checkout pinned Theme SDK
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          repository: KingHacker9000/totem-theme-sdk
+          ref: 30f38e2c739ab344c9e7a795fb552b7d2e6a5b96
+          path: .theme-sdk
+          persist-credentials: false
+      - name: Set up Node
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+        with:
+          node-version: 22.20.0
+      - name: Build pinned Theme SDK
+        run: |
+          npm install --prefix .theme-sdk --ignore-scripts --no-audit --no-fund
+          npm run --prefix .theme-sdk build
+      - name: Validate public theme manifests
+        run: node scripts/validate-theme-contracts.mjs --sdk .theme-sdk
+      - name: Run contract regression tests
+        env:
+          THEME_SDK_DIR: .theme-sdk
+        run: node --test test/theme-contract.test.mjs
