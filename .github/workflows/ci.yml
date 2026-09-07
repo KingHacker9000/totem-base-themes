@@ -34,7 +34,12 @@ jobs:
         run: node scripts/validate-theme-contracts.mjs --sdk .theme-sdk
       - name: Validate public theme asset boundaries
         run: node scripts/validate-theme-assets.mjs
-      - name: Run contract regression tests
+      - name: Build deterministic public theme bundles twice
+        run: |
+          node scripts/build-theme-bundles.mjs --out .dist-a
+          node scripts/build-theme-bundles.mjs --out .dist-b
+          diff -ru .dist-a .dist-b
+      - name: Run contract and distribution regression tests
         env:
           THEME_SDK_DIR: .theme-sdk
-        run: node --test test/theme-contract.test.mjs test/theme-assets.test.mjs
+        run: node --test test/theme-contract.test.mjs test/theme-assets.test.mjs test/theme-bundles.test.mjs
