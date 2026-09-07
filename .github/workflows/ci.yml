@@ -32,7 +32,9 @@ jobs:
           npm run --prefix .theme-sdk build
       - name: Validate public theme manifests
         run: node scripts/validate-theme-contracts.mjs --sdk .theme-sdk
+      - name: Validate public theme asset boundaries
+        run: node scripts/validate-theme-assets.mjs
       - name: Run contract regression tests
         env:
           THEME_SDK_DIR: .theme-sdk
-        run: node --test test/theme-contract.test.mjs
+        run: node --test test/theme-contract.test.mjs test/theme-assets.test.mjs
